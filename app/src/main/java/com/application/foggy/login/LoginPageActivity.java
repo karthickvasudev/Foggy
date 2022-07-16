@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import com.application.foggy.R;
@@ -40,11 +39,14 @@ public class LoginPageActivity extends AppCompatActivity {
 
     private void initMethods() {
         loginBtnAction();
-        googleSignin();
+        googleSignIn();
     }
 
-    private void googleSignin() {
-        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestId().build();
+    private void googleSignIn() {
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("164846260896-0e34nt61sli435li3t69nrr98b23feh4.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
@@ -64,7 +66,8 @@ public class LoginPageActivity extends AppCompatActivity {
                 task.getResult(ApiException.class);
                 startActivity(new Intent(this, DashboardActivity.class));
             } catch (ApiException e) {
-                Toast.makeText(this, "Signin went wrong", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+                Toast.makeText(this, "SignIn went wrong", Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -40,8 +40,8 @@ public class PackageFragment extends Fragment {
     }
 
     private void packageListRecycler() {
-        RecyclerView productListRecycler = root.findViewById(R.id.product_list_recycler);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(root.getContext(), RecyclerView.VERTICAL, false);
+        RecyclerView productListRecycler = root.findViewById(R.id.package_list_recycler);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         productListRecycler.setLayoutManager(layoutManager);
         productListRecycler.setAdapter(new PackageListAdapter());
         productListRecycler.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));

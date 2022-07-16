@@ -9,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.application.foggy.R;
+import com.application.foggy.constants.Constants;
 import com.application.foggy.databinding.ActivityDashboardBinding;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
@@ -71,6 +74,21 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void initMethods() {
         verifyGoogleLoggedIn();
+        initLogout();
+    }
+
+    private void initLogout() {
+        MenuItem item = navigationView.getMenu().findItem(R.id.nav_logout);
+        item.setOnMenuItemClickListener(menuItem -> {
+            Task<Void> voidTask = googleSignInClient.signOut();
+            try {
+                voidTask.getResult(ApiException.class);
+                finish();
+            } catch (ApiException e) {
+                e.printStackTrace();
+            }
+            return true;
+        });
     }
 
     private void verifyGoogleLoggedIn() {
@@ -81,10 +99,10 @@ public class DashboardActivity extends AppCompatActivity {
             String _id = lastSignedInAccount.getId();
             String _token = lastSignedInAccount.getIdToken();
             Uri _photoUrl = lastSignedInAccount.getPhotoUrl();
-            System.out.println(_token);
+            Constants.setToken(_token);
             displayName.setText(_displayName);
             email.setText(_email);
-            userPhoto.setImageURI(_photoUrl.normalizeScheme());
+            Glide.with(this).load(_photoUrl).into(userPhoto);
         }
     }
 

@@ -32,6 +32,7 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_product, container, false);
+        initInstanceVariable();
         initMethods();
         return root;
     }

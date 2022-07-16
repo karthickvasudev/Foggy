@@ -26,9 +26,17 @@
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2165" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2165" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/xml/home_tile_back_ground.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/content_dashboard.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_package.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_product.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/nav_header_dashboard.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/menu/activity_main_drawer.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/menu/dashboard.xml" value="0.1" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
