@@ -42,9 +42,8 @@ public class HomeFragment extends Fragment {
 
     private void tabLayoutViewPageAction() {
         TabbedFragmentAdapter pendingOrderFragmentAdapter
-                = new TabbedFragmentAdapter(getParentFragmentManager(), getLifecycle());
+                = new TabbedFragmentAdapter(getParentFragment());
         viewPager2.setAdapter(pendingOrderFragmentAdapter);
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

@@ -11,9 +11,9 @@ import com.application.foggy.dashboard.fragments.home.pendingordertab.PendingOrd
 
 public class TabbedFragmentAdapter extends FragmentStateAdapter {
 
-    public TabbedFragmentAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-        super(fragmentManager, lifecycle);
 
+    public TabbedFragmentAdapter(@NonNull Fragment fragment) {
+        super(fragment);
     }
 
     @NonNull

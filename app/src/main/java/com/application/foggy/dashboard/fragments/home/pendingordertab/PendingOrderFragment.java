@@ -19,11 +19,11 @@ import com.application.foggy.dashboard.fragments.home.PendingOrderAdapter;
 public class PendingOrderFragment extends Fragment {
     private View root;
 
-    private void initInstanceVariable(){
+    private void initInstanceVariable() {
 
     }
 
-    private void initMethods(){
+    private void initMethods() {
         pendingOrderRecyclerView();
     }
 
@@ -54,7 +54,7 @@ public class PendingOrderFragment extends Fragment {
         RecyclerView pendingOrderRecyclerView = root.findViewById(R.id.pending_order_recycler_view);
         pendingOrderRecyclerView.setLayoutManager(linearLayoutManager);
         pendingOrderRecyclerView.setAdapter(pendingOrderAdapter);
-        pendingOrderRecyclerView.addItemDecoration(new DividerItemDecoration(root.getContext(), 1));
+        pendingOrderRecyclerView.addItemDecoration(new DividerItemDecoration(root.getContext(), DividerItemDecoration.VERTICAL));
 
     }
 }
