@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.application.foggy.R;
 import com.application.foggy.dashboard.DashboardActivity;
+import com.application.foggy.loadingspinner.LoadingSpinner;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -52,6 +53,7 @@ public class LoginPageActivity extends AppCompatActivity {
 
     private void loginBtnAction() {
         googleLoginBtn.setOnClickListener(view -> {
+            LoadingSpinner.show(this);
             Intent signInIntent = googleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, 200);
         });
@@ -65,6 +67,7 @@ public class LoginPageActivity extends AppCompatActivity {
             try {
                 task.getResult(ApiException.class);
                 startActivity(new Intent(this, DashboardActivity.class));
+
             } catch (ApiException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "SignIn went wrong", Toast.LENGTH_SHORT).show();
