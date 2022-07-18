@@ -126,6 +126,8 @@ public class DashboardActivity extends AppCompatActivity {
             String _token = lastSignedInAccount.getIdToken();
             Uri _photoUrl = lastSignedInAccount.getPhotoUrl();
             Constants.setToken(_token);
+            System.out.println("-----------");
+            System.out.println(_token);
             displayName.setText(_displayName);
             email.setText(_email);
             Glide.with(this).load(_photoUrl).into(userPhoto);

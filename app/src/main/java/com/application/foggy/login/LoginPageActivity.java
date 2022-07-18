@@ -2,14 +2,21 @@ package com.application.foggy.login;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.application.foggy.R;
+import com.application.foggy.api.ApiInstance;
+import com.application.foggy.constants.Roles;
 import com.application.foggy.dashboard.DashboardActivity;
 import com.application.foggy.loadingspinner.LoadingSpinner;
+import com.application.foggy.modals.LoginSignupModal;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -17,16 +24,23 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginPageActivity extends AppCompatActivity {
 
     private SignInButton googleLoginBtn;
     private GoogleSignInOptions googleSignInOptions;
     private GoogleSignInClient googleSignInClient;
-
+    private ConstraintLayout loginLayout;
 
     private void initInstanceVariable() {
         googleLoginBtn = findViewById(R.id.google_login_btn);
+        loginLayout = findViewById(R.id.login_layout);
     }
 
 
@@ -66,12 +80,36 @@ public class LoginPageActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 task.getResult(ApiException.class);
-                startActivity(new Intent(this, DashboardActivity.class));
-
+                GoogleSignInAccount result = task.getResult();
+                LoginSignupModal signup = LoginSignupModal.builder()
+                        .id(result.getId())
+                        .name(result.getDisplayName())
+                        .email(result.getEmail())
+                        .role(Roles.USER)
+                        .photoUrl(result.getPhotoUrl().toString())
+                        .build();
+                singupLoginCallApi(signup);
             } catch (ApiException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "SignIn went wrong", Toast.LENGTH_SHORT).show();
+                LoadingSpinner.dismissIf();
+                Snackbar.make(loginLayout,"Login Failed",Snackbar.LENGTH_LONG).show();
+
             }
         }
+    }
+
+    private void singupLoginCallApi(LoginSignupModal signup) {
+        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+        /*Call<LoginSignupModal> api = ApiInstance.getApiRepository().getLoginSignupDetails(signup);
+        api.enqueue(new Callback<LoginSignupModal>() {
+            @Override
+            public void onResponse(Call<LoginSignupModal> call, Response<LoginSignupModal> response) {
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+            }
+            @Override
+            public void onFailure(Call<LoginSignupModal> call, Throwable t) {
+                LoadingSpinner.dismissIf();
+                Snackbar.make(loginLayout,"Login Failed",Snackbar.LENGTH_LONG).show();
+            }
+        });*/
     }
 }

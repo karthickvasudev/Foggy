@@ -9,8 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.foggy.R;
+import com.application.foggy.modals.ProductModals;
+
+import java.util.List;
 
 public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.ViewHolder> {
+    private List<ProductModals> products;
+
+    public ProductListAdapter(List<ProductModals> products) {
+        this.products = products;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView productName;
@@ -34,14 +42,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.productName.setText("General Garments");
-        holder.qty.setText("1");
-        holder.price.setText("₹.8");
+        ProductModals product = products.get(position);
+        holder.productName.setText(product.getProductName());
+        holder.qty.setText(String.valueOf(product.getQuantity()));
+        holder.price.setText("₹." + product.getPrice());
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return products.size();
     }
 
 

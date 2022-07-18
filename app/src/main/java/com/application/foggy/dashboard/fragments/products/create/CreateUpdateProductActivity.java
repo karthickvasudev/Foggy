@@ -3,17 +3,28 @@ package com.application.foggy.dashboard.fragments.products.create;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
 import com.application.foggy.R;
+import com.application.foggy.api.ApiInstance;
+import com.application.foggy.loadingspinner.LoadingSpinner;
+import com.application.foggy.modals.ProductModals;
 import com.google.android.gms.common.util.Strings;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreateUpdateProductActivity extends AppCompatActivity {
 
@@ -43,6 +54,41 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
     private void initMethods() {
         initThisActivity();
         initFormValidation();
+        createProductBtnAction();
+    }
+
+    private void createProductBtnAction() {
+        createProductBtn.setOnClickListener(view -> {
+            LoadingSpinner.show(view.getContext());
+            ProductModals product = ProductModals.builder()
+                    .productName(productName.getEditText().getText().toString())
+                    .quantity(Integer.parseInt(productQty.getText().toString()))
+                    .price(Double.parseDouble(productPrice.getText().toString()))
+                    .active(productActiveSwitch.isActivated())
+                    .build();
+            Call<ProductModals> api = ApiInstance.getApiRepositoryWithToken().createProduct(product);
+            api.enqueue(new Callback<ProductModals>() {
+                @Override
+                public void onResponse(Call<ProductModals> call, Response<ProductModals> response) {
+
+                }
+
+                @Override
+                public void onFailure(Call<ProductModals> call, Throwable t) {
+                    LoadingSpinner.dismissIf();
+//                    Snackbar.make(view,"Oops! Something went wrong",Snackbar.LENGTH_LONG).show();
+                    new AlertDialog.Builder(view.getContext())
+                            .setTitle("Error")
+                            .setMessage("Oops something went wrong")
+                            .setCancelable(false)
+                            .setNegativeButton("Ok",(dialogInterface, i) -> {dialogInterface.dismiss();})
+                            .create()
+                            .show();
+
+                }
+            });
+
+        });
     }
 
     private void initFormValidation() {
@@ -54,11 +100,11 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!Strings.isEmptyOrWhitespace(productName.getEditText().getText().toString())
-                && !Strings.isEmptyOrWhitespace(productQty.getText().toString())
-                        && !Strings.isEmptyOrWhitespace(productPrice.getText().toString())){
+                if (!Strings.isEmptyOrWhitespace(productName.getEditText().getText().toString())
+                        && !Strings.isEmptyOrWhitespace(productQty.getText().toString())
+                        && !Strings.isEmptyOrWhitespace(productPrice.getText().toString())) {
                     createProductBtn.setEnabled(true);
-                }else{
+                } else {
                     createProductBtn.setEnabled(false);
                 }
                 System.out.println("working");
