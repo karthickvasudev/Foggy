@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiInstance {
 
-    private static final String BASE_URL = "http://10.202.183.41:8080";
+    private static final String BASE_URL = "http://10.202.242.121:8080";
 
     private static OkHttpClient client = new OkHttpClient.Builder()
             .addInterceptor(new ApiInterceptor())

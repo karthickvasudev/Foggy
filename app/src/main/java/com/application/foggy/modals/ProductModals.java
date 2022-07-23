@@ -1,5 +1,6 @@
 package com.application.foggy.modals;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import lombok.Builder;
@@ -9,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ProductModals {
+public class ProductModals implements Serializable {
     private String productId;
     private String productName;
     private Integer quantity;

@@ -98,8 +98,7 @@ public class LoginPageActivity extends AppCompatActivity {
     }
 
     private void singupLoginCallApi(LoginSignupModal signup) {
-        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
-        /*Call<LoginSignupModal> api = ApiInstance.getApiRepository().getLoginSignupDetails(signup);
+        Call<LoginSignupModal> api = ApiInstance.getApiRepository().getLoginSignupDetails(signup);
         api.enqueue(new Callback<LoginSignupModal>() {
             @Override
             public void onResponse(Call<LoginSignupModal> call, Response<LoginSignupModal> response) {
@@ -110,6 +109,6 @@ public class LoginPageActivity extends AppCompatActivity {
                 LoadingSpinner.dismissIf();
                 Snackbar.make(loginLayout,"Login Failed",Snackbar.LENGTH_LONG).show();
             }
-        });*/
+        });
     }
 }

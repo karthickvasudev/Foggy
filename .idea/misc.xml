@@ -26,17 +26,26 @@
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2165" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2165" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/app/src/main/res/xml/home_tile_back_ground.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_create_order.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_create_package.xml" value="0.25" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_create_product.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_dashboard.xml" value="0.20416666666666666" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_login_page.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/activity_view_product.xml" value="0.22" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/content_dashboard.xml" value="0.209375" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_orders.xml" value="0.20416666666666666" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_package.xml" value="0.209375" />
-        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_product.xml" value="0.25" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/fragment_product.xml" value="0.16" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/nav_header_dashboard.xml" value="0.209375" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/opps_something_went_wrong.xml" value="0.33" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/viewholder_package_product_list.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/viewholder_product_list.xml" value="0.209375" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/layout/viewholder_product_list_create_order.xml" value="0.20416666666666666" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/menu/activity_main_drawer.xml" value="0.209375" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/menu/dashboard.xml" value="0.1" />
         <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/project/foggy/app/src/main/res/xml/network_security_config.xml" value="0.1" />
+        <entry key="..\:/karthick/android-practise/android-studio-2021.2.1.15-windows/supported/platforms/android-32/data/res/layout/simple_list_item_1.xml" value="0.1" />
       </map>
     </option>
   </component>

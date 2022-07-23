@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -19,7 +17,6 @@ import com.application.foggy.api.ApiInstance;
 import com.application.foggy.loadingspinner.LoadingSpinner;
 import com.application.foggy.modals.ProductModals;
 import com.google.android.gms.common.util.Strings;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import retrofit2.Call;
@@ -34,6 +31,7 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
     private EditText productPrice;
     private Switch productActiveSwitch;
     private TextWatcher watcher;
+    private String updateProductId;
 
     private void initInstanceVariable() {
         createProductBtn = findViewById(R.id.create_product_btn);
@@ -47,6 +45,7 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_product);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initInstanceVariable();
         initMethods();
     }
@@ -54,23 +53,41 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
     private void initMethods() {
         initThisActivity();
         initFormValidation();
-        createProductBtnAction();
+        createUpdateProductBtnAction();
     }
 
-    private void createProductBtnAction() {
+    private void createUpdateProductBtnAction() {
         createProductBtn.setOnClickListener(view -> {
-            LoadingSpinner.show(view.getContext());
+            LoadingSpinner.show(this);
             ProductModals product = ProductModals.builder()
                     .productName(productName.getEditText().getText().toString())
                     .quantity(Integer.parseInt(productQty.getText().toString()))
                     .price(Double.parseDouble(productPrice.getText().toString()))
-                    .active(productActiveSwitch.isActivated())
+                    .active(productActiveSwitch.isChecked())
                     .build();
-            Call<ProductModals> api = ApiInstance.getApiRepositoryWithToken().createProduct(product);
+            Call<ProductModals> api;
+            if (getIntent().getStringExtra("type").equals("create")) {
+                api = ApiInstance.getApiRepositoryWithToken().createProduct(product);
+            } else {
+                api = ApiInstance.getApiRepositoryWithToken().updateProduct(updateProductId, product);
+            }
             api.enqueue(new Callback<ProductModals>() {
                 @Override
                 public void onResponse(Call<ProductModals> call, Response<ProductModals> response) {
-
+                    if(response.code()==200) {
+                        finish();
+                    }else{
+                        LoadingSpinner.dismissIf();
+                        new AlertDialog.Builder(view.getContext())
+                                .setTitle("Error")
+                                .setMessage("Oops something went wrong")
+                                .setCancelable(false)
+                                .setNegativeButton("Ok", (dialogInterface, i) -> {
+                                    dialogInterface.dismiss();
+                                })
+                                .create()
+                                .show();
+                    }
                 }
 
                 @Override
@@ -81,7 +98,9 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
                             .setTitle("Error")
                             .setMessage("Oops something went wrong")
                             .setCancelable(false)
-                            .setNegativeButton("Ok",(dialogInterface, i) -> {dialogInterface.dismiss();})
+                            .setNegativeButton("Ok", (dialogInterface, i) -> {
+                                dialogInterface.dismiss();
+                            })
                             .create()
                             .show();
 
@@ -123,11 +142,24 @@ public class CreateUpdateProductActivity extends AppCompatActivity {
     }
 
     private void initThisActivity() {
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (getIntent().getStringExtra("type").equals("create")) {
             this.setTitle("Create Product");
             createProductBtn.setText("Create Product");
         }
+        if (getIntent().getStringExtra("type").equals("update")) {
+            ProductModals product = (ProductModals) getIntent().getSerializableExtra("productModal");
+            this.setTitle("Update Product - "+product.getProductId());
+            createProductBtn.setText("Update Product");
+            setValuesForUpdate(product);
+        }
+    }
+
+    private void setValuesForUpdate(ProductModals productModal) {
+        updateProductId = productModal.getProductId();
+        productName.getEditText().setText(productModal.getProductName());
+        productQty.setText(String.valueOf(productModal.getQuantity()));
+        productPrice.setText(String.valueOf(productModal.getPrice()));
+        productActiveSwitch.setChecked(productModal.getActive());
     }
 
     @Override

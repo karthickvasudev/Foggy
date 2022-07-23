@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:id="@+id/vh_pl_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -16,42 +14,33 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/vh_pl_product_name"
+            android:id="@+id/vh_pp_product_name"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center|start"
-            android:text="Product 1"
-            android:textSize="16sp"
+            android:text="Product Name"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/vh_pl_qty"
+        <EditText
+            android:id="@+id/vh_pp_qty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center|right"
-            android:text="1" />
+            android:ems="1"
+            android:gravity="center"
+            android:inputType="number" />
 
-        <TextView
-            android:id="@+id/vh_pl_price"
+        <EditText
+            android:id="@+id/vh_pp_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center|right"
-            android:text="₹.8" />
-
-        <Switch
-            android:id="@+id/vh_pl_status_switch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:enabled="false"
-            android:gravity="right" />
+            android:ems="1"
+            android:gravity="center"
+            android:inputType="numberDecimal" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
